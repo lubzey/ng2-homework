@@ -3,15 +3,19 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'my-app',
   template: `
-   <h1>{{title}}</h1>
+   <h1>{{header}}</h1>
    <nav>
-    <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-    <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+    <a routerLink="/top-movies" routerLinkActive="active">top-movies</a>
+    <a routerLink="/movies" routerLinkActive="active">movies</a>
+    <movie-search></movie-search>
    </nav>
    <router-outlet></router-outlet>
+   <h1>{{footer}}</h1>
  `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Tour of Heroes';
+  header = 'Add header';
+  footer = 'Add footer';
+  
 }

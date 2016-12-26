@@ -1,0 +1,8 @@
+<div id="search-component">
+    <input #searchBox id="search-box" placeholder="search" (keyup)="search(searchBox.value)" />
+    <div>
+        <div *ngFor="let movie of movies | async" (click)="gotoDetail(movie)" class="search-result">
+            {{movie.name}}
+        </div>
+    </div>
+</div>

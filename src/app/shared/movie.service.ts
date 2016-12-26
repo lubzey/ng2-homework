@@ -3,57 +3,57 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Hero } from './hero';
+import { movie } from './movie';
 
 @Injectable()
-export class HeroService {
+export class MovieService {
 
-    private heroesUrl = 'app/heroes';  // URL to web api
+    private moviesUrl = 'app/movies';  // URL to web api
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private http: Http) { }
 
-    create(name: string): Promise<Hero> {
+    create(name: string): Promise<movie> {
         return this.http
-            .post(this.heroesUrl, JSON.stringify({ name: name }), { headers: this.headers })
+            .post(this.moviesUrl, JSON.stringify({ name: name }), { headers: this.headers })
             .toPromise()
             .then(res => res.json().data)
             .catch(this.handleError);
     }
 
-    update(hero: Hero): Promise<Hero> {
-        const url = `${this.heroesUrl}/${hero.id}`;
+    update(movie: movie): Promise<movie> {
+        const url = `${this.moviesUrl}/${movie.id}`;
         return this.http
-            .put(url, JSON.stringify(hero), { headers: this.headers })
+            .put(url, JSON.stringify(movie), { headers: this.headers })
             .toPromise()
-            .then(() => hero)
+            .then(() => movie)
             .catch(this.handleError);
     }
 
     delete(id: number): Promise<void> {
-        const url = `${this.heroesUrl}/${id}`;
+        const url = `${this.moviesUrl}/${id}`;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(() => null)
             .catch(this.handleError);
     }
 
-    getHeroes(): Promise<Hero[]> {
-        return this.http.get(this.heroesUrl)
+    getMovies(): Promise<movie[]> {
+        return this.http.get(this.moviesUrl)
             .toPromise()
-            .then(response => response.json().data as Hero[])
+            .then(response => response.json().data as movie[])
             .catch(this.handleError);
     }
 
-    getHeroesSlowly(): Promise<Hero[]> {
-        return new Promise<Hero[]>(resolve =>
+    getMoviesSlowly(): Promise<movie[]> {
+        return new Promise<movie[]>(resolve =>
             setTimeout(resolve, 2000)) // delay 2 seconds
-            .then(() => this.getHeroes());
+            .then(() => this.getMovies());
     }
 
-    getHero(id: number): Promise<Hero> {
-        return this.getHeroes()
-            .then(heroes => heroes.find(hero => hero.id === id));
+    getMovie(id: number): Promise<movie> {
+        return this.getMovies()
+            .then(movies => movies.find(movie => movie.id === id));
     }
 
     private handleError(error: any): Promise<any> {

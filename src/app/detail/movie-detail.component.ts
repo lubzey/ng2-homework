@@ -3,19 +3,19 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { HeroService } from '../shared/hero.service';
-import { Hero } from '../shared/hero';
+import { MovieService } from '../shared/movie.service';
+import { movie } from '../shared/movie';
 
 @Component({
-  selector: 'my-hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: ['./hero-detail.component.css']
+  selector: 'my-movie-detail',
+  templateUrl: './movie-detail.component.html',
+  styleUrls: ['./movie-detail.component.css']
 })
 export class HeroDetailComponent implements OnInit {
-  @Input() hero: Hero;
+  @Input() movie: movie;
 
   constructor(
-    private heroService: HeroService,
+    private heroService: MovieService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
@@ -23,8 +23,8 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
-      this.heroService.getHero(id)
-        .then(hero => this.hero = hero);
+      this.heroService.getMovie(id)
+        .then(movie => this.movie = movie);
     });
   }
 
@@ -33,7 +33,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.heroService.update(this.hero)
+    this.heroService.update(this.movie)
       .then(() => this.goBack());
   }
 }

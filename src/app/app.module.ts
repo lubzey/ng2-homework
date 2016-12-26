@@ -11,11 +11,11 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './shared/in-memory-data.service';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './detail/hero-detail.component';
-import { HeroService } from './shared/hero.service';
-import { HeroSearchComponent } from './search/hero-search.component';
+import { TopMoviesComponent } from './top-movies/top-movies.component';
+import { MoviesComponent } from './movies/movies.component';
+import { HeroDetailComponent } from './detail/movie-detail.component';
+import { MovieService } from './shared/movie.service';
+import { HeroSearchComponent } from './search/movie-search.component';
 
 @NgModule({
     imports: [
@@ -27,12 +27,12 @@ import { HeroSearchComponent } from './search/hero-search.component';
     ],
     declarations: [
         AppComponent,
-        DashboardComponent,
-        HeroesComponent,
+        TopMoviesComponent,
+        MoviesComponent,
         HeroDetailComponent,
         HeroSearchComponent
     ],
-    providers: [HeroService],
+    providers: [MovieService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
