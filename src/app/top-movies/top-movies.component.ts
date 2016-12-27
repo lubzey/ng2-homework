@@ -20,8 +20,19 @@ export class TopMoviesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.heroService.getMovies()
-      .then(movies => this.movies = movies.slice(1, 5));
+    this.movies = [{id: 11, name: 'Mr. Nice'},
+      {id: 12, name: 'Narco'},
+      {id: 13, name: 'Bombasto'},
+      {id: 14, name: 'Celeritas'},
+      {id: 15, name: 'Magneta'},
+      {id: 16, name: 'RubberMan'},
+      {id: 17, name: 'Dynama'},
+      {id: 18, name: 'Dr IQ'},
+      {id: 19, name: 'Magma'},
+      {id: 20, name: 'Tornado'}];
+
+    // this.heroService.getMovies()
+    //   .then(movies => this.movies = movies.slice(1, 5));
   }
 
   gotoDetail(movie: movie): void {

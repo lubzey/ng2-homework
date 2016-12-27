@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { movie } from '../shared/movie';
 
 @Injectable()
-export class HeroSearchService {
+export class MovieSearchService {
 
     constructor(private http: Http) { }
     
     search(term: string): Observable<movie[]> {
+        let url = 'http://www.omdbapi.com/?t=' + term + '&y=&plot=short&r=json';
+        console.log(url);
+
         return this.http
-            .get(`app/movies/?name=${term}`)
-            .map((r: Response) => r.json().data as movie[]);
+            .get(url)
+            .map((r: Response) =>
+            {
+                console.log(r);
+                return r.json().data as movie[];
+            });
     }
 }

@@ -11,11 +11,11 @@ import { movie } from '../shared/movie';
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit {
+export class MovieDetailComponent implements OnInit {
   @Input() movie: movie;
 
   constructor(
-    private heroService: MovieService,
+    private movieService: MovieService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
@@ -23,7 +23,7 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
-      this.heroService.getMovie(id)
+      this.movieService.getMovie(id)
         .then(movie => this.movie = movie);
     });
   }
@@ -33,7 +33,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.heroService.update(this.movie)
+    this.movieService.update(this.movie)
       .then(() => this.goBack());
   }
 }

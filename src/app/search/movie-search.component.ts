@@ -3,21 +3,21 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { HeroSearchService } from './movie-search.service';
+import { MovieSearchService } from './movie-search.service';
 import { movie } from '../shared/movie';
 
 @Component({
     selector: 'movie-search',
     templateUrl: './movie-search.component.html',
     styleUrls: ['./movie-search.component.css'],
-    providers: [HeroSearchService]
+    providers: [MovieSearchService]
 })
-export class HeroSearchComponent implements OnInit {
+export class MovieSearchComponent implements OnInit {
     movies: Observable<movie[]>;
     private searchTerms = new Subject<string>();
 
     constructor(
-        private heroSearchService: HeroSearchService,
+        private movieSearchService: MovieSearchService,
         private router: Router) { }
 
     // Push a search term into the observable stream.
@@ -31,7 +31,7 @@ export class HeroSearchComponent implements OnInit {
             .distinctUntilChanged()   // ignore if next search term is same as previous
             .switchMap(term => term   // switch to new observable each time
                 // return the http search observable
-                ? this.heroSearchService.search(term)
+                ? this.movieSearchService.search(term)
                 // or the observable of empty movies if no search term
                 : Observable.of<movie[]>([]))
             .catch(error => {

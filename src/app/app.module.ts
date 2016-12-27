@@ -13,24 +13,28 @@ import { InMemoryDataService }  from './shared/in-memory-data.service';
 import { AppComponent } from './app.component';
 import { TopMoviesComponent } from './top-movies/top-movies.component';
 import { MoviesComponent } from './movies/movies.component';
-import { HeroDetailComponent } from './detail/movie-detail.component';
+import { MovieDetailComponent } from './detail/movie-detail.component';
 import { MovieService } from './shared/movie.service';
-import { HeroSearchComponent } from './search/movie-search.component';
+import { MovieSearchComponent } from './search/movie-search.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService),
+        // InMemoryWebApiModule.forRoot(InMemoryDataService),
         AppRoutingModule
     ],
     declarations: [
         AppComponent,
         TopMoviesComponent,
         MoviesComponent,
-        HeroDetailComponent,
-        HeroSearchComponent
+        MovieDetailComponent,
+        MovieSearchComponent,
+        HeaderComponent,
+        FooterComponent
     ],
     providers: [MovieService],
     bootstrap: [AppComponent]
