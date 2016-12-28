@@ -26,3 +26,13 @@ nav a:hover {
 nav a.active {
   color: #039be5;
 }
+.container {
+  width: 80%;
+  margin-left: 10%;
+}
+header {
+  text-align: center;
+}
+footer {
+  text-align: center;
+}

@@ -10,7 +10,7 @@ export class MovieSearchService {
     constructor(private http: Http) { }
     
     search(term: string): Observable<movie[]> {
-        let url = 'http://www.omdbapi.com/?t=' + term + '&y=&plot=short&r=json';
+        let url = 'http://www.omdbapi.com/?s=' + term + '&y=&plot=short&r=json';
         console.log(url);
 
         return this.http

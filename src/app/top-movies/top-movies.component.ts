@@ -7,7 +7,7 @@ import { MovieService } from '../shared/movie.service';
 @Component({
   selector: 'my-top-movies',
   templateUrl: './top-movies.component.html',
-  styleUrls: [ './top-movies.component.css' ]
+  styleUrls: ['./top-movies.component.css']
 })
 export class TopMoviesComponent implements OnInit {
 
@@ -15,24 +15,13 @@ export class TopMoviesComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private heroService: MovieService) {
+    private movieService: MovieService) {
   }
 
 
   ngOnInit(): void {
-    this.movies = [{id: 11, name: 'Mr. Nice'},
-      {id: 12, name: 'Narco'},
-      {id: 13, name: 'Bombasto'},
-      {id: 14, name: 'Celeritas'},
-      {id: 15, name: 'Magneta'},
-      {id: 16, name: 'RubberMan'},
-      {id: 17, name: 'Dynama'},
-      {id: 18, name: 'Dr IQ'},
-      {id: 19, name: 'Magma'},
-      {id: 20, name: 'Tornado'}];
-
-    // this.heroService.getMovies()
-    //   .then(movies => this.movies = movies.slice(1, 5));
+    this.movieService.getMovies()
+      .subscribe(movies => this.movies = movies.slice(0, 6));
   }
 
   gotoDetail(movie: movie): void {

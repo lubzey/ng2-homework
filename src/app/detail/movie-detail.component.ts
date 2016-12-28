@@ -23,17 +23,11 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       let id = +params['id'];
-      this.movieService.getMovie(id)
-        .then(movie => this.movie = movie);
+      this.movieService.getMovie(id);
     });
   }
 
   goBack(): void {
     this.location.back();
-  }
-
-  save(): void {
-    this.movieService.update(this.movie)
-      .then(() => this.goBack());
   }
 }
