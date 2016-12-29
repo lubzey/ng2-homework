@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { MovieSearchService } from './movie-search.service';
-import { movie } from '../shared/movie';
+import { movie } from '../shared/models/movie';
 
 @Component({
     selector: 'movie-search',

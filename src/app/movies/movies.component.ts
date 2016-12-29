@@ -1,28 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { movie } from '../shared/movie';
-import { MovieService } from '../shared/movie.service';
+import { movie } from '../shared/models/movie';
+import { MovieService } from '../shared/services/movie.service';
 
 @Component({
-  selector: 'my-movies',
+  selector: 'movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.css']
 })
-export class MoviesComponent {
-  movies: movie[];
-  selectedMovie: movie;
+export class MoviesComponent implements OnInit {
+
+  movies: movie[] = [];
 
   constructor(
     private router: Router,
-    private MovieService: MovieService) { }
-
-  
-  onSelect(movie: movie): void {
-    this.selectedMovie = movie;
+    private movieService: MovieService) {
   }
 
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedMovie.id]);
+  ngOnInit(): void {
+    this.movieService.getMovies()
+      .subscribe(movies => this.movies = movies.slice(0, 6));
+
+      
+  }
+
+  gotoDetail(movie: movie): void {
+    let link = ['/' + movie.Title + '/detail'];
+    this.router.navigate(link);
   }
 }

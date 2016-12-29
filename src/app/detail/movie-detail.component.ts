@@ -3,8 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { MovieService } from '../shared/movie.service';
-import { movie } from '../shared/movie';
+import { MovieService } from '../shared/services/movie.service';
+import { movie } from '../shared/models/movie';
 
 @Component({
   selector: 'my-movie-detail',
@@ -22,8 +22,8 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
-      let id = +params['id'];
-      this.movieService.getMovie(id);
+      let title = params['Title'];
+      this.movieService.getMovie(title);
     });
   }
 

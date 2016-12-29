@@ -6,7 +6,7 @@ import 'rxjs';
 
 import 'rxjs/add/operator/toPromise';
 
-import { movie } from './movie';
+import { movie } from '../models/movie';
 
 @Injectable()
 export class MovieService {
@@ -15,19 +15,20 @@ export class MovieService {
     private moviesSearchUrl = 'app/movies';  // URL to web api
     private headers = new Headers({ 'Content-Type': 'application/json' });
 
-    movies: Observable<any[]>;
+    movies: movie[];
 
 
     constructor(private http: Http) { }
 
     getMovies() {
         return this.http.get(this.moviesUrl)
-        .map(x => x.json());            
+            .map(x => x.json());
     }
 
-    getMovie(id: number) {
-        // return this.getMovies()
-        //     .then(movies => movies.find(movie => movie.id === id));
+    getMovie(title: string) {
+        return this.getMovies()
+            .toPromise()
+            .then(movies => movies.find(movie => movie.Title === title));
     }
 
     private handleError(error: any): Promise<any> {
